@@ -1,1 +1,1 @@
-console.log((new Date().getTime())+7*24*60*60*1000);
+console.log(Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2));

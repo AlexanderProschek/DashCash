@@ -15,6 +15,10 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         unique: true,
@@ -40,6 +44,9 @@ const userSchema = new Schema({
     progress: {
         type: Number,
         default: 0
+    },
+    token: {
+        type: String,
     }
 });
 

@@ -13,7 +13,7 @@ router.route('/:userName')
     .get(UsersController.getUser);
 //    .patch(UsersController.update);
 
-router.route('/join/:userName/:groupId')
+router.route('/join/')
     .post(UsersController.join);
 
 router.route('/:userName/getGroup')

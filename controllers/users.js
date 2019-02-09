@@ -24,7 +24,7 @@ module.exports = {
     },
 
     join: async (req, res, next) => {
-        const { groupId , userName } = req.params;
+        const { groupId , userName } = req.body;
         const qUser = await User.findOne({userName: userName});
         const group = await Group.updateOne(
             {
