@@ -19,7 +19,7 @@ module.exports = {
         const { userName } = req.params;
         const user = await User.find({ userName: userName });
         if(user) {
-            return res.status(200).json(user);
+            return res.status(200).json(user[0]);
         }
         res.status(404).json({ error: "User Not Found"});
     }
