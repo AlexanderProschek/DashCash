@@ -26,7 +26,7 @@ const groupSchema = new Schema({
 });
 
 // Create a model
-const Group = mongoose.model('user', userSchema);
+const Group = mongoose.model('group', groupSchema);
 
 // Export the model
 module.exports = Group;  
