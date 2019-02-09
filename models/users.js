@@ -2,13 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    name: {
+    fname: {
         type: String,
-        required: true
+        default: ""
+    },
+    lname: {
+        type: String,
+        default: ""
+    },
+    userName: {
+        type: String,
+        required: true,
+        unique: true
     },
     elo: {
         type: Number,
-        requierd: true,
         // Ask Sai about elo
         default: 800
     },
@@ -22,14 +30,13 @@ const userSchema = new Schema({
     },
     balance: {
         type: Number,
-        required: true,
         default: 0
     },
-    currentGroup: {
+    /*currentGroup: {
         type: Schema.Types.ObjectId,
         ref: 'group',
         default: ""
-    },
+    },*/
     progress: {
         type: Number,
         default: 0
