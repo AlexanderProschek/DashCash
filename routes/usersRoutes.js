@@ -10,7 +10,13 @@ router.route('/')
     .post(UsersController.post);
 
 router.route('/:userName')
-    .get(UsersController.getUser)
-    .patch(UsersController.update);
+    .get(UsersController.getUser);
+//    .patch(UsersController.update);
+
+router.route('/join/:userName/:groupId')
+    .post(UsersController.join);
+
+router.route('/:userName/getGroup')
+    .get(UsersController.getGroup);
 
 module.exports = router;

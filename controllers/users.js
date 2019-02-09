@@ -23,12 +23,31 @@ module.exports = {
         res.status(404).json({ error: "User Not Found"});
     },
 
-    update: async (req, res, next) => {
-        const { userName, groupId } = req.body;
-        const user = User.findOneAndUpdate({ userName: userName }, { $set: { currentGroup: groupId} });
-        const group = Group.findOneAndUpdate({});
-        const newUser = await user.save();
-        await group.save();
-        res.status(201).json(newUser);
+    join: async (req, res, next) => {
+        const { groupId , userName } = req.params;
+        const qUser = await User.findOne({userName: userName});
+        const group = await Group.updateOne(
+            {
+                _id: groupId
+            },
+            {
+                $push: {members: qUser._id}
+            });
+        res.status(201).json({ action: "Done" });
+    },
+
+    getGroup: async (req, res, next) => {
+        const { userName } = req.params;
+        const u = await User.findOne({ userName: userName });
+        const allGroups = await Group.find({});
+        allGroups.forEach(e => {
+            e.members.forEach(ee => {
+                if(ee.equals(u._id)) {
+                    console.log("TT");
+                    return res.status(200).json({ "_id": e._id });
+                }
+            });
+        });
+        res.status(404).json({ error: "Did not find a group" });
     }
 };
