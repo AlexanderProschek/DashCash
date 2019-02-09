@@ -14,9 +14,9 @@ module.exports = {
         res.status(201).json(user)
     }, */
 
-    getUser: async (req, res, next) => {
+    getGroup: async (req, res, next) => {
         const { groupId } = req.params;
-        const group = await Group.findById({ groupId });
+        const group = await Group.find({ _id: groupId });
         if(group) {
             return res.status(200).json(group);
         }

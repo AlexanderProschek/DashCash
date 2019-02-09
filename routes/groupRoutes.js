@@ -9,7 +9,7 @@ router.route('/')
     .get(GroupController.get)
 
 router.route('/:groupId')
-    .get(GroupController.getUser);
+    .get(GroupController.getGroup);
 
 router.route('/make')
     .post(GroupController.make);
