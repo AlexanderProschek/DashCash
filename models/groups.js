@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
     memebers: [{
-
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     }],
-    pool: {
+    buyIn: {
         type: Number,
         default: 0
     },
@@ -21,7 +22,7 @@ const groupSchema = new Schema({
     endDate: {
         type: Date,
         required: true,
-        
+        default: Date.parse(Date.now.getTime+7*24*60*60*1000)
     }
 });
 

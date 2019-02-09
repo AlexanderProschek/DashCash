@@ -10,6 +10,7 @@ router.route('/')
     .post(UsersController.post);
 
 router.route('/:userName')
-    .get(UsersController.getUser);
+    .get(UsersController.getUser)
+    .patch(UsersController.update);
 
 module.exports = router;

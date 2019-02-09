@@ -15,6 +15,11 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
+    email: {
+        type: String,
+        unique: true,
+        default: ""
+    },
     elo: {
         type: Number,
         // Ask Sai about elo
@@ -32,11 +37,10 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
-    /*currentGroup: {
+    currentGroup: {
         type: Schema.Types.ObjectId,
         ref: 'group',
-        default: ""
-    },*/
+    },
     progress: {
         type: Number,
         default: 0
