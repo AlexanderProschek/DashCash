@@ -21,7 +21,7 @@ const groupSchema = new Schema({
     endDate: {
         type: Date,
         required: true,
-        default: Date.parse(Date.getDa)
+        
     }
 });
 
