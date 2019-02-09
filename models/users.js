@@ -26,7 +26,13 @@ const userSchema = new Schema({
         default: 0
     },
     currentGroup: {
-        type: Schema.Types.ObjectI
+        type: Schema.Types.ObjectId,
+        ref: 'group',
+        default: ""
+    },
+    progress: {
+        type: Number,
+        default: 0
     }
 });
 
@@ -34,4 +40,4 @@ const userSchema = new Schema({
 const User = mongoose.model('user', userSchema);
 
 // Export the model
-module.exports = User;
+module.exports = User;  
