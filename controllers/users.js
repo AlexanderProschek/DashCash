@@ -21,10 +21,6 @@ module.exports = {
         if(user) {
             return res.status(200).json(user);
         }
-        user = await User.findById(userName);
-        if(user) {
-            return res.status(200).json(user);
-        }
         res.status(404).json({ error: "User Not Found"});
     }
 };
