@@ -1,7 +1,7 @@
 {
-  "name": "groupol",
+  "name": "dashcash",
   "version": "1.0.0",
-  "description": "The backen to the Groupol app",
+  "description": "The backen to the DashCash app",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/AlexanderProschek/Groupol/issues"
   },
-  "homepage": "https://github.com/AlexanderProschek/Groupol#readme"
+  "homepage": "https://github.com/AlexanderProschek/Groupol#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  }
 }
