@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
-    memebers: [{
+    members: [{
         type: Schema.Types.ObjectId,
         ref: 'user'
     }],
@@ -12,17 +12,15 @@ const groupSchema = new Schema({
     },
     level: {
         type: Number,
-        required: true
+        default: 0
     },
     startDate: {
         type: Date,
-        required: true,
         default: Date.now
     },
     endDate: {
         type: Date,
-        required: true,
-        default: Date.parse(Date.now.getTime+7*24*60*60*1000)
+        default: new Date((new Date().getTime())+7*24*60*60*1000)
     }
 });
 

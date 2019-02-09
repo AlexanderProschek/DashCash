@@ -15,8 +15,8 @@ const groupRoutes = require('./routes/groupRoutes');
 app.use(bodyParser.json());
 
 // Routes
+app.use('/groups', groupRoutes);
 app.use('/users', userRoutes);
-//app.use('/groups', groupRoutes);
 
 // 404 Error Handler
 app.use((req, res, next) => {

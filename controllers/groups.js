@@ -24,11 +24,9 @@ module.exports = {
     },
 
     make: async (req, res, next) => {
-        const { level } = req.body;
-        const newGroup = await new Group({
-            level: level
-        });
-        res.status(201).json(newGroup);
+        const newGroup = new Group(req.body);
+        const group = await newGroup.save();
+        res.status(201).json(group);
     }
 
    /* getFittingGroups: async (req, res, next) => {

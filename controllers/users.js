@@ -5,13 +5,11 @@ module.exports = {
 
     get: async (req, res, next) => {
         const users = await User.find({});
-        console.log(users);
         res.status(200).json(users);
     },
 
     post: async (req, res, next) => {
         const newUser = new User(req.body);
-        console.log(newUser);
         const user = await newUser.save();
         res.status(201).json(user);
     },
