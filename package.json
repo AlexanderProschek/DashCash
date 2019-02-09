@@ -1,0 +1,19 @@
+{
+  "name": "groupol",
+  "version": "1.0.0",
+  "description": "The backen to the Groupol app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://AlexanderProschek@github.com/AlexanderProschek/Groupol.git"
+  },
+  "author": "Alexander Proschek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderProschek/Groupol/issues"
+  },
+  "homepage": "https://github.com/AlexanderProschek/Groupol#readme"
+}
