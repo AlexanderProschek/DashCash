@@ -1,2 +1,2 @@
-# Groupol
-The backen to the Groupol app
+# DashCash
+The back end to the DashCash app

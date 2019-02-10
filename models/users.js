@@ -4,11 +4,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     fname: {
         type: String,
-        default: ""
     },
     lname: {
         type: String,
-        default: ""
     },
     userName: {
         type: String,
@@ -22,12 +20,10 @@ const userSchema = new Schema({
     email: {
         type: String,
         unique: true,
-        default: ""
     },
     elo: {
         type: Number,
-        // Ask Sai about elo
-        default: 800
+        default: 100
     },
     dateSignedUp: {
         type: Date,

@@ -10,6 +10,7 @@ const app = express();
 // Routes
 const userRoutes = require('./routes/usersRoutes');
 const groupRoutes = require('./routes/groupRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Middleware
 app.use(bodyParser.json());
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 // Routes
 app.use('/groups', groupRoutes);
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
 // 404 Error Handler
 app.use((req, res, next) => {

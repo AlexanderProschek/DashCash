@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Define the schema for a group object
 const groupSchema = new Schema({
     members: [{
         type: Schema.Types.ObjectId,

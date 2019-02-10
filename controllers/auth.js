@@ -4,13 +4,24 @@ module.exports = {
 
     login: async (req, res, next) => {
         const { user, password } = req.body;
-        if(User.find({ userName: user })) {
-            return res.status(406).json({ message: "Username already exists" });
+        const tempUser = User.findOne({ $and: [{ userName: user }, { password: password }] });
+
+        // Check is the combination of User/Password exists
+        if(!tempUser) {
+            return res.status(406).json({ message: "Username and password don't match!" });
         }
 
-        req.body['token'] = Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2);
-        const newUser = new User(req.body);
-        const user = await newUser.save();
-        res.status(201).json(user);
+        // Generate a token and 
+        const tokenIn = Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2);
+
+        // Save the token in the corresponding user object
+        User.updateOne({ $and: [{ userName: user }, { password: password }] },
+            {$set: { 'tolken': tolkenIn }});
+
+        // Save the token in the local user JSON
+        tempUser['token'] = token;
+
+        // Send back the user object with the
+        res.status(201).json(tempUser);
     }
 };
