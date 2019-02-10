@@ -3,6 +3,8 @@ const User = require('../models/users');
 module.exports = {
 
     login: async (req, res, next) => {
+        console.log(req.body);
+
         const { user, password } = req.body;
         const tempUser = await User.findOne({ $and: [{ userName: user }, { password: password }] });
 
@@ -20,8 +22,6 @@ module.exports = {
 
         // Save the token in the local user JSON
         tempUser['token'] = tokenIn;
-
-        console.log(tempUser);
 
         // Send back the user object with the
         res.status(201).json(tempUser);
