@@ -19,7 +19,7 @@ module.exports = {
             {$set: { 'token': tokenIn }});
 
         // Save the token in the local user JSON
-        tempUser['token'] = token;
+        tempUser['token'] = tokenIn;
 
         // Send back the user object with the
         res.status(201).json(tempUser);
