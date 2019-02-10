@@ -63,8 +63,6 @@ module.exports = {
         const payerId = req.query.PayerID;
         const paymentId = req.query.paymentId;
 
-        console.log(req);
-
         const execute_payment_json = {
             "payer_id": payerId,
             "transactions": [{
@@ -77,7 +75,6 @@ module.exports = {
 
         paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
             if (error) {
-                console.log(error.response);
                 throw error;
             } else {
                 console.log(JSON.stringify(payment));
