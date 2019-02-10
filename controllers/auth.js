@@ -16,7 +16,7 @@ module.exports = {
 
         // Save the token in the corresponding user object
         User.updateOne({ $and: [{ userName: user }, { password: password }] },
-            {$set: { 'tolken': tokenIn }});
+            {$set: { 'token': tokenIn }});
 
         // Save the token in the local user JSON
         tempUser['token'] = token;
