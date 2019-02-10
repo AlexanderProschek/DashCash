@@ -52,7 +52,7 @@ module.exports = {
         if(tempUser){
             const allGroups = await Group.find({});
             allGroups.forEach(e => {
-                e.members.forEach(ee => {
+                e.members.forEach(async ee => {
                     console.log(ee);
                     console.log(tempUser._id);
                     if(ee.equals(tempUser._id)) {
