@@ -1,49 +1,38 @@
+// Import model schemas
 const User = require('../models/users');
 const Group = require('../models/groups');
 
+// Defines the characteristics of the /group/... uRIs have
 module.exports = {
 
+    // Returns all groups that are or will be active
     get: async (req, res, next) => {
-        // if(User.findOne({ token: req.query.token })){
         const allGroups = await Group.find({});
         res.status(200).json(allGroups);
-        // } else {
-        //     res.status(401).json({ Message: "Unauthorized access"});
-        // }
     },
 
-    /*post: async (req, res, next) => {
-        const newUser = new User(req.body);
-        console.log(newUser);
-        const user = await newUser.save();
-        res.status(201).json(user)
-    }, */
-
+    // returns a specific group based on a give group id
     getGroup: async (req, res, next) => {
-        // if(User.findOne({ token: req.query.token })){
         const { groupId } = req.params;
         const group = await Group.find({ _id: groupId });
+        // Check if a group was found
         if(group) {
             return res.status(200).json(group);
         }
         res.status(404).json({ error: "Group Not Found"});
-        // } else {
-        //     res.status(401).json({ Message: "Unauthorized access"});
-        // }
     },
 
+    // Make a new group based on 
     make: async (req, res, next) => {
-        // if(User.findOne({ token: req.query.token })){
         const newGroup = new Group(req.body);
         const group = await newGroup.save();
         res.status(201).json(group);
-        // } else {
-        //     res.status(401).json({ Message: "Unauthorized access"});
-        // }
     },
 
+    // Returns a list of groups based on the current elo rating of a user
     getFittingGroups: async (req, res, next) => {
         const { elo } = req.params;
+        // Calculate the level the user is supposed to be in
         const xlevelx = Math.floor(elo/200) > 12 ? 12 : Math.floor(elo/200);
 
         const groups = await Group.find({ level: xlevelx });
@@ -54,6 +43,7 @@ module.exports = {
             if(chunk.level == xlevelx) ret.push(chunk);
         }
 
+        // Check if all classes of options are represented
         const options = [{m: 1, flag: false}, {m: 2*xlevelx, flag: false},
             {m: 5*xlevelx, flag: false}, {m: 8*xlevelx, flag: false},
             {m: 10*xlevelx, flag: false}];
@@ -66,14 +56,14 @@ module.exports = {
             });
         });
 
-        console.log(ret);
-
+        // Set the date range for the upcoming events
         var d = new Date();
         var c = new Date();
         c.setHours(24,0,0,0);
         const start = new Date(d.getTime() + (7-((d.getDay()+7)%8)) * 86400000 + (c.getTime() - new Date().getTime())).getTime();
         const end = start + 518400000;
 
+        // Make the new needed groups
         options.forEach(o => {
             if(!o.flag) {
                 const newGroup = new Group({

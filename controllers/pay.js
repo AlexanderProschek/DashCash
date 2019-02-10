@@ -1,3 +1,4 @@
+const express = require('express');
 const paypal = require('paypal-rest-sdk');
 
 // Configuration of the PayPal SDK
@@ -7,12 +8,15 @@ paypal.configure({
 'client_secret': 'EF7eon6WpkT01H4idIArKueGngHkRknpM563XgAtUvCrihCm6wtBkrujA95n70-sn2LYKOGg5qodMMux'
 });
 
+var globalAmount;
+
 // Exporting things to other node scripts
 module.exports = {
 
     // /pay accepts { amount: xxx } as the body
     pay: (req, res) => {
-        const { amount } = req.body || 50;
+        const { amount } = req.body;
+        globalAmount = amount;
         const create_payment_json = {
             "intent": "sale",
             "payer": {
@@ -66,7 +70,7 @@ module.exports = {
             "transactions": [{
                 "amount": {
                     "currency": "USD",
-                    "total": "10"
+                    "total": globalAmount
                 }
             }]
         };
@@ -77,7 +81,7 @@ module.exports = {
                 throw error;
             } else {
                 console.log(JSON.stringify(payment));
-                res.status(200).json({ 'status': 'Success' });
+                res.status(200).send(express.static(__dirname+'/static/paymentPage.html'));
             }
         });
     },
