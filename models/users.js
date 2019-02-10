@@ -1,4 +1,4 @@
-.// Necessary imports
+// Necessary imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

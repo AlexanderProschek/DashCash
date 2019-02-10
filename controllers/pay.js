@@ -9,15 +9,20 @@ paypal.configure({
 'client_secret': 'EF7eon6WpkT01H4idIArKueGngHkRknpM563XgAtUvCrihCm6wtBkrujA95n70-sn2LYKOGg5qodMMux'
 });
 
+// User input
+const User = require('../models/users');
+
 var globalAmount;
+var globalUser;
 
 // Exporting things to other node scripts
 module.exports = {
 
     // /pay accepts { amount: xxx } as the body
     pay: (req, res) => {
-        const { amount } = req.body;
+        const { amount, user } = req.body;
         globalAmount = amount;
+        globalUser = user;
         const create_payment_json = {
             "intent": "sale",
             "payer": {
@@ -78,7 +83,7 @@ module.exports = {
             if (error) {
                 throw error;
             } else {
-                console.log(JSON.stringify(payment));
+                User.updateOne({ userName: globalUser},{ $inc: {balance: amount}});
                 res.status(200).json({ "Payment": "Successful" });
             }
         });
