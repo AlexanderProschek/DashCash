@@ -83,10 +83,12 @@ module.exports = {
 
         paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
             if (error) {
+                console.log(error);
                 throw error;
             } else {
-                User.updateOne({ userName: globalUser},{ $inc: {balance: globalAmount}});
-                res.status(200).json({ "Payment": "Successful" });
+                User.updateOne({ userName: globalUser},{ $inc: {balance: globalAmount}}, e => {
+                    res.status(200).json({ "Payment": "Successful" });
+                });
             }
         });
     }
