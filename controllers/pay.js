@@ -85,7 +85,7 @@ module.exports = {
             if (error) {
                 throw error;
             } else {
-                User.updateOne({ userName: globalUser},{ $inc: {balance: amount}});
+                User.updateOne({ userName: globalUser},{ $inc: {balance: globalAmount}});
                 res.status(200).json({ "Payment": "Successful" });
             }
         });
