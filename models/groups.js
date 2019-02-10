@@ -17,11 +17,11 @@ const groupSchema = new Schema({
     },
     startDate: {
         type: Date,
-        default: Date.now
+        default: new Date(Date.now)
     },
     endDate: {
         type: Date,
-        default: new Date((new Date().getTime())+7*24*60*60*1000)
+        default: new Date((new Date().getTime())+7*24*60*60*1000).getTime()
     }
 });
 

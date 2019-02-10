@@ -5,8 +5,13 @@ module.exports = {
 
     // Get all users in the database
     get: async (req, res, next) => {
-        console.log(req.query);
         const users = await User.find({});
+        res.status(200).json(users);
+    },
+
+    // Get a user by his ID
+    getById: async (req, res, next) => {
+        const users = await User.findById(req.params.id)
         res.status(200).json(users);
     },
 

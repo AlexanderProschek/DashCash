@@ -19,4 +19,7 @@ router.route('/join/')
 router.route('/:userName/getGroup')
     .get(UsersController.getGroup);
 
+router.rout('/getById/:id',)
+    .get(UsersController.getById);
+
 module.exports = router;
