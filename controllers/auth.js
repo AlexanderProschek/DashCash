@@ -4,7 +4,7 @@ module.exports = {
 
     login: async (req, res, next) => {
         const { user, password } = req.body;
-        const tempUser = User.findOne({ $and: [{ userName: user }, { password: password }] });
+        const tempUser = await User.findOne({ $and: [{ userName: user }, { password: password }] });
 
         // Check is the combination of User/Password exists
         if(!tempUser) {
@@ -15,7 +15,7 @@ module.exports = {
         const tokenIn = Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2);
 
         // Save the token in the corresponding user object
-        User.updateOne({ $and: [{ userName: user }, { password: password }] },
+        await User.updateOne({ $and: [{ userName: user }, { password: password }] },
             {$set: { 'token': tokenIn }});
 
         // Save the token in the local user JSON
