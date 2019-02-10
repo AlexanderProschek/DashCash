@@ -21,6 +21,8 @@ module.exports = {
         // Save the token in the local user JSON
         tempUser['token'] = tokenIn;
 
+        console.log(tempUser);
+
         // Send back the user object with the
         res.status(201).json(tempUser);
     }
