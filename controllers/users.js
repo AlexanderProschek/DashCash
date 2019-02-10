@@ -56,7 +56,9 @@ module.exports = {
                     console.log(ee);
                     console.log(tempUser._id);
                     if(ee.equals(tempUser._id)) {
-                        return res.status(200).json(await Group.findOne({"_id": e._id}));
+                        const ans = await Group.findOne({"_id": e._id})
+                        console.log(ans);
+                        return res.status(200).json(ans);
                     }
                 });
             });
