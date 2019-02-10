@@ -48,7 +48,7 @@ module.exports = {
     getGroup: async (req, res, next) => {
         const { userName } = req.params;
         const tempUser = await User.findOne({ userName: userName });
-        if(tempUser.token == req.query.token){
+        if(tempUser.token && req.query.token && tempUser.token == req.query.token){
             const allGroups = await Group.find({});
             allGroups.forEach(e => {
                 e.members.forEach(ee => {
