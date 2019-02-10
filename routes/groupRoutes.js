@@ -14,7 +14,7 @@ router.route('/:groupId')
 router.route('/make')
     .post(GroupController.make);
 
-//router.route('/elo/:elo')
-//    .get(GroupController.getFittingGroups);
+router.route('/elo/:elo')
+    .get(GroupController.getFittingGroups);
 
 module.exports = router;
