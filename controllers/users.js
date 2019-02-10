@@ -49,16 +49,16 @@ module.exports = {
         const { userName } = req.params;
         const tempUser = await User.findOne({ userName: userName });
         //if(tempUser && req.query && tempUser.token == req.query.token){
-        const allGroups = await Group.find({});
-        allGroups.forEach(e => {
-            e.members.forEach(ee => {
-                console.log(ee);
-                console.log(e);
-                if(ee.equals(e._id)) {
-                    return res.status(200).json({ "_id": e._id });
-                }
+        if(tempUser){
+            const allGroups = await Group.find({});
+            allGroups.forEach(e => {
+                e.members.forEach(ee => {
+                    if(ee.equals(tempUser._id)) {
+                        return res.status(200).json({ "_id": e._id });
+                    }
+                });
             });
-        });
+        }
         res.status(404).json({ error: "Did not find a group" });
         // } else {
         //     res.status(401).json({ Message: "Unauthorized access"});
