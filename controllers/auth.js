@@ -3,7 +3,6 @@ const User = require('../models/users');
 module.exports = {
 
     login: async (req, res, next) => {
-        console.log(req.body);
 
         const { user, password } = req.body;
         const tempUser = await User.findOne({ $and: [{ userName: user }, { password: password }] });

@@ -1,17 +1,17 @@
 const paypal = require('paypal-rest-sdk');
 
+// Configuration of the PayPal SDK
+paypal.configure({
+'mode': 'sandbox', //sandbox or live
+'client_id': 'ARayWb3E437GcXlU6nx_g_b9smWF4u_Hh4R0_RVD28Zz9VvyhgnhfZJ-qpzFLeP91rIOmD9CxH9NZDb4',
+'client_secret': 'EF7eon6WpkT01H4idIArKueGngHkRknpM563XgAtUvCrihCm6wtBkrujA95n70-sn2LYKOGg5qodMMux'
+});
+
 // Exporting things to other node scripts
 module.exports = {
 
     // /pay accepts { amount: xxx } as the body
     pay: (req, res) => {
-        // Configuration of the PayPal SDK
-        paypal.configure({
-        'mode': 'sandbox', //sandbox or live
-        'client_id': 'ARayWb3E437GcXlU6nx_g_b9smWF4u_Hh4R0_RVD28Zz9VvyhgnhfZJ-qpzFLeP91rIOmD9CxH9NZDb4',
-        'client_secret': 'EF7eon6WpkT01H4idIArKueGngHkRknpM563XgAtUvCrihCm6wtBkrujA95n70-sn2LYKOGg5qodMMux'
-        });
-
         const { amount } = req.body || 50;
         const create_payment_json = {
             "intent": "sale",
@@ -64,7 +64,7 @@ module.exports = {
             "transactions": [{
                 "amount": {
                     "currency": "USD",
-                    "total": "25.00"
+                    "total": amount
                 }
             }]
         };
