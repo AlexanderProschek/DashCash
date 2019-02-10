@@ -22,11 +22,11 @@ module.exports = {
         const { userName } = req.params;
         const user = await User.findOne({ userName: userName });
         if(user) {
-            if(user.token == req.query.token) {
-                return res.status(200).json(user);
-            } else {
-                return res.status(401).json({ Message: "Unauthorized access"});
-            }
+            //if(user.token == req.query.token) {
+            return res.status(200).json(user);
+            // } else {
+            //     return res.status(401).json({ Message: "Unauthorized access"});
+            // }
         }
         res.status(404).json({ error: "User Not Found"});
     },
@@ -34,13 +34,13 @@ module.exports = {
     // Make a specific user join a specific group
     join: async (req, res, next) => {
         const { groupId , userName } = req.body;
-        if(User.find({userName: userName}).token == req.query.token) {
-            const qUser = await User.findOne({userName: userName});
-            const group = await Group.updateOne(
-                { _id: groupId },
-                { $push: {members: qUser._id} });
-            res.status(201).json({ action: "Done" });
-        }
+        //if(User.find({userName: userName}).token == req.query.token) {
+        const qUser = await User.findOne({userName: userName});
+        const group = await Group.updateOne(
+            { _id: groupId },
+            { $push: {members: qUser._id} });
+        res.status(201).json({ action: "Done" });
+        //}
         res.status(401).json({ Message: "Unauthorized access"});
     },
 
@@ -48,18 +48,18 @@ module.exports = {
     getGroup: async (req, res, next) => {
         const { userName } = req.params;
         const tempUser = await User.findOne({ userName: userName });
-        if(tempUser && req.query && tempUser.token == req.query.token){
-            const allGroups = await Group.find({});
-            allGroups.forEach(e => {
-                e.members.forEach(ee => {
-                    if(ee.equals(u._id)) {
-                        return res.status(200).json({ "_id": e._id });
-                    }
-                });
+        //if(tempUser && req.query && tempUser.token == req.query.token){
+        const allGroups = await Group.find({});
+        allGroups.forEach(e => {
+            e.members.forEach(ee => {
+                if(ee.equals(u._id)) {
+                    return res.status(200).json({ "_id": e._id });
+                }
             });
-            res.status(404).json({ error: "Did not find a group" });
-        } else {
-            res.status(401).json({ Message: "Unauthorized access"});
-        }
+        //    });
+        res.status(404).json({ error: "Did not find a group" });
+        // } else {
+        //     res.status(401).json({ Message: "Unauthorized access"});
+        // }
     }
 };

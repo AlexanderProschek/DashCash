@@ -4,12 +4,12 @@ const Group = require('../models/groups');
 module.exports = {
 
     get: async (req, res, next) => {
-        if(User.findOne({ token: req.query.token })){
-            const allGroups = await Group.find({});
-            res.status(200).json(allGroups);
-        } else {
-            res.status(401).json({ Message: "Unauthorized access"});
-        }
+        // if(User.findOne({ token: req.query.token })){
+        const allGroups = await Group.find({});
+        res.status(200).json(allGroups);
+        // } else {
+        //     res.status(401).json({ Message: "Unauthorized access"});
+        // }
     },
 
     /*post: async (req, res, next) => {
@@ -20,26 +20,26 @@ module.exports = {
     }, */
 
     getGroup: async (req, res, next) => {
-        if(User.findOne({ token: req.query.token })){
-            const { groupId } = req.params;
-            const group = await Group.find({ _id: groupId });
-            if(group) {
-                return res.status(200).json(group);
-            }
-            res.status(404).json({ error: "Group Not Found"});
-        } else {
-            res.status(401).json({ Message: "Unauthorized access"});
+        // if(User.findOne({ token: req.query.token })){
+        const { groupId } = req.params;
+        const group = await Group.find({ _id: groupId });
+        if(group) {
+            return res.status(200).json(group);
         }
+        res.status(404).json({ error: "Group Not Found"});
+        // } else {
+        //     res.status(401).json({ Message: "Unauthorized access"});
+        // }
     },
 
     make: async (req, res, next) => {
-        if(User.findOne({ token: req.query.token })){
-            const newGroup = new Group(req.body);
-            const group = await newGroup.save();
-            res.status(201).json(group);
-        } else {
-            res.status(401).json({ Message: "Unauthorized access"});
-        }
+        // if(User.findOne({ token: req.query.token })){
+        const newGroup = new Group(req.body);
+        const group = await newGroup.save();
+        res.status(201).json(group);
+        // } else {
+        //     res.status(401).json({ Message: "Unauthorized access"});
+        // }
     },
 
     getFittingGroups: async (req, res, next) => {
