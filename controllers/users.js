@@ -40,6 +40,8 @@ module.exports = {
         const group = await Group.updateOne(
             { _id: groupId },
             { $push: {members: qUser._id} });
+        const test = await Group.findById(groupId);
+        console.log(test.members);
         res.status(201).json({ action: "Done" });
     },
 
