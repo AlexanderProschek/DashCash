@@ -46,27 +46,32 @@ module.exports = {
         const { elo } = req.params;
         const xlevelx = Math.floor(elo/200) > 12 ? 12 : Math.floor(elo/200);
 
-        const groups = Group.find({ level: xlevelx });
+        const groups = await Group.find({ level: xlevelx });
         var ret = [];
+
         while(groups.length > 0) {
             var chunk = groups.pop();
             if(chunk.level == xlevelx) ret.push(chunk);
         }
 
-        const options = [{m: 1, flag: false}, {m: 2*level, flag: false},
-            {m: 5*level, flag: false}, {m: 8*level, flag: false},
-            {m: 10*level, flag: false}];
+        const options = [{m: 1, flag: false}, {m: 2*xlevelx, flag: false},
+            {m: 5*xlevelx, flag: false}, {m: 8*xlevelx, flag: false},
+            {m: 10*xlevelx, flag: false}];
 
         ret.forEach(g => {
             options.forEach(o => {
-                if(g.buyIn == o.m) o.flag = true;
+                if(g.buyIn == o.m) {
+                    o.flag = true;
+                }
             });
         });
+
+        console.log(ret);
 
         var d = new Date();
         var c = new Date();
         c.setHours(24,0,0,0);
-        const start = d.getTime() + (7-d.getDay()) * 86400000 + (c.getTime() - new Date().getTime());
+        const start = new Date(d.getTime() + (7-((d.getDay()+7)%8)) * 86400000 + (c.getTime() - new Date().getTime())).getTime();
         const end = start + 518400000;
 
         options.forEach(o => {
@@ -77,7 +82,10 @@ module.exports = {
                     startDate: start,
                     endDate: end
                 });
+                ret.push(newGroup);
             }
-        })
+        });
+
+        res.status(200).json(ret);
     }
 };

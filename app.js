@@ -11,6 +11,7 @@ const app = express();
 const userRoutes = require('./routes/usersRoutes');
 const groupRoutes = require('./routes/groupRoutes');
 const authRoutes = require('./routes/authRoutes');
+const payRoutes = require('./routes/payRoutes');
 
 // Middleware
 app.use(bodyParser.json());
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/groups', groupRoutes);
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
+app.use('/pay', payRoutes);
 
 // 404 Error Handler
 app.use((req, res, next) => {
