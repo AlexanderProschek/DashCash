@@ -36,6 +36,8 @@ module.exports = {
     // Make a specific user join a specific group
     join: async (req, res, next) => {
         const { groupId , userName } = req.body;
+        console.log(groupId);
+        console.log(userName);
         const qUser = await User.findOne({userName: userName});
         const group = await Group.updateOne(
             { _id: groupId },
