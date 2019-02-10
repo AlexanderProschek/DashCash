@@ -79,6 +79,8 @@ module.exports = {
             }]
         };
 
+        console.log("Good!");
+
         paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
             if (error) {
                 throw error;
