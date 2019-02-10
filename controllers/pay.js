@@ -59,12 +59,14 @@ module.exports = {
         const payerId = req.query.PayerID;
         const paymentId = req.query.paymentId;
 
+        console.log(req);
+
         const execute_payment_json = {
             "payer_id": payerId,
             "transactions": [{
                 "amount": {
                     "currency": "USD",
-                    "total": amount
+                    "total": "10"
                 }
             }]
         };
