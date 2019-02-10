@@ -1,6 +1,8 @@
+.// Necessary imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Start of the schema
 const userSchema = new Schema({
     fname: {
         type: String,
@@ -30,7 +32,6 @@ const userSchema = new Schema({
         default: Date.now()
     },
     picture: {
-        // Maybe add a default picture
         type: String
     },
     balance: {

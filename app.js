@@ -1,10 +1,13 @@
+// Necessary imports
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+// Set up the MongoDB connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/users');
 
+// Create an instance of express
 const app = express();
 
 // Routes

@@ -1,3 +1,4 @@
+// Necessary imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -17,11 +18,9 @@ const groupSchema = new Schema({
     },
     startDate: {
         type: Date,
-        default: Date.now
     },
     endDate: {
         type: Date,
-        default: new Date((new Date().getTime())+7*24*60*60*1000)
     }
 });
 
