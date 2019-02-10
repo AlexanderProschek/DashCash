@@ -52,13 +52,9 @@ module.exports = {
         if(tempUser){
             const allGroups = await Group.find({});
             allGroups.forEach(e => {
-                e.members.forEach(async ee => {
-                    console.log(ee);
-                    console.log(tempUser._id);
+                e.members.forEach(ee => {
                     if(ee.equals(tempUser._id)) {
-                        const ans = await Group.findOne({"_id": e._id})
-                        console.log(ans);
-                        return res.status(200).json(ans);
+                        return res.status(200).json(e);
                     }
                 });
             });
