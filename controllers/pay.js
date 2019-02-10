@@ -66,6 +66,7 @@ module.exports = {
     },
 
     success: (req, res) => {
+        console.log("fff");
         const payerId = req.query.PayerID;
         const paymentId = req.query.paymentId;
 
@@ -86,7 +87,9 @@ module.exports = {
                 console.log(error);
                 throw error;
             } else {
+                console.log("Everything");
                 User.updateOne({ userName: globalUser},{ $inc: {balance: globalAmount}}, e => {
+                    console.log("rrr");
                     res.status(200).json({ "Payment": "Successful" });
                 });
             }
