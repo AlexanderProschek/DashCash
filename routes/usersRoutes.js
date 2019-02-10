@@ -1,25 +1,29 @@
+// Necesary imports
 const express = require('express');
-//const router = express.Router();
 const router = require('express-promise-router')();
 
-//const { validateBody, schemas } = require('../helpers/routerHelpers');
 const UsersController = require('../controllers/users');
 
+// Basic router
 router.route('/')
     .get(UsersController.get)
     .post(UsersController.post);
 
+// Route base on user name
 router.route('/:userName')
     .get(UsersController.getUser);
-//    .patch(UsersController.update);
 
+// Route based on join activity
 router.route('/join/')
     .post(UsersController.join);
 
+// Route based on finding a group
 router.route('/:userName/getGroup')
     .get(UsersController.getGroup);
 
+// Route to get users by id
 router.route('/getById/:id',)
     .get(UsersController.getById);
 
+// Export this router
 module.exports = router;

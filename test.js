@@ -1,14 +1,10 @@
-var d = new Date();
-var c = new Date();
-c.setHours(24,0,0,0);
+const b = 1549256400000;
+const w = 604800000;
 
-const con = ((c-d)+(d.getDate() * 24*60*60*1000));
+const d = new Date().getTime();
 
-console.log(d.getTime()+con);
+var c = b;
+while(c < d) c += w;
 
-// console.log(d.getDay());
-
-// const start = d.getTime() + (7-((d.getDay()+7)%8))*24*60*60*1000 + (c.getTime() - new Date().getTime());
-
-// console.log(start);
-
+console.log(c);
+console.log(b+w);

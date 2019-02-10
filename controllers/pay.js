@@ -1,3 +1,4 @@
+// Necessary imports
 const express = require('express');
 const paypal = require('paypal-rest-sdk');
 
@@ -78,7 +79,7 @@ module.exports = {
                 throw error;
             } else {
                 console.log(JSON.stringify(payment));
-                res.status(200).json({ "Hello": "There" });
+                res.status(200).json({ "Payment": "Successful" });
             }
         });
     },

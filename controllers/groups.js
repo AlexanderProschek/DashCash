@@ -57,10 +57,12 @@ module.exports = {
         });
 
         // Set the date range for the upcoming events
-        var d = new Date();
-        var c = new Date();
-        c.setHours(24,0,0,0);
-        const start = new Date(d.getTime() + (7-((d.getDay()+7)%8)) * 86400000 + (c.getTime() - new Date().getTime())).getTime();
+        const bigData = 1549256400000;
+        const week = 604800000;
+
+        var start = 1549256400000;
+        const now = new Date().getTime();
+        while(now > start) start += week;
         const end = start + 518400000;
 
         // Make the new needed groups

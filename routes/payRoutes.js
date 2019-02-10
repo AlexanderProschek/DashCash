@@ -1,17 +1,16 @@
+// Neccesary imports
 const express = require('express');
-//const router = express.Router();
 const router = require('express-promise-router')();
 
-//const { validateBody, schemas } = require('../helpers/routerHelpers');
 const PayController = require('../controllers/pay');
 
+// Base router
 router.route('/')
     .post(PayController.pay);
 
+// Router to successful transactions
 router.route('/success')
     .get(PayController.success);
 
-router.route('/cancel')
-    .get(PayController.cancel);
-
+// Export this router
 module.exports = router;
