@@ -1,4 +1,4 @@
-const User = required('../models/users');
+const User = require('../models/users');
 const Group = require('../models/groups');
 
 module.exports = {
