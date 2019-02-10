@@ -53,6 +53,8 @@ module.exports = {
             const allGroups = await Group.find({});
             allGroups.forEach(e => {
                 e.members.forEach(ee => {
+                    console.log(ee);
+                    console.log(tempUser._id);
                     if(ee.equals(tempUser._id)) {
                         return res.status(200).json({ "_id": e._id });
                     }
