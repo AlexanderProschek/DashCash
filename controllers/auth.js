@@ -1,7 +1,8 @@
+// Necessary imports
 const User = require('../models/users');
 
 module.exports = {
-
+    // Authentication function
     login: async (req, res, next) => {
 
         const { user, password } = req.body;

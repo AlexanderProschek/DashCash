@@ -82,9 +82,5 @@ module.exports = {
                 res.status(200).json({ "Payment": "Successful" });
             }
         });
-    },
-
-    cancel: (req, res) => {
-        
     }
 };
