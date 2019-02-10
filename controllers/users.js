@@ -56,7 +56,7 @@ module.exports = {
                     return res.status(200).json({ "_id": e._id });
                 }
             });
-        //    });
+        });
         res.status(404).json({ error: "Did not find a group" });
         // } else {
         //     res.status(401).json({ Message: "Unauthorized access"});
