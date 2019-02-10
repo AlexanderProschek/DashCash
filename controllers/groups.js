@@ -32,6 +32,7 @@ module.exports = {
     // Returns a list of groups based on the current elo rating of a user
     getFittingGroups: async (req, res, next) => {
         const { elo } = req.params;
+        console.log(elo);
         // Calculate the level the user is supposed to be in
         const xlevelx = Math.floor(elo/200) > 12 ? 12 : Math.floor(elo/200);
 
