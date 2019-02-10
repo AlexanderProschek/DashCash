@@ -81,7 +81,7 @@ module.exports = {
                 throw error;
             } else {
                 console.log(JSON.stringify(payment));
-                res.send(express.static(__dirname+'/static/paymentPage.html'));
+                res.status(200).json({ "Hello": "There" });
             }
         });
     },
